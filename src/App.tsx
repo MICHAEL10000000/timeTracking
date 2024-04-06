@@ -1,5 +1,4 @@
 import "./index.css";
-/* import "./css/output.css"; */
 import Card from "./Card";
 import { useEffect, useState } from "react";
 import Header from "./Header";
@@ -9,8 +8,6 @@ import study from "./Images/icon-study.svg";
 import selfCare from "./Images/icon-self-care.svg";
 import exercise from "./Images/icon-exercise.svg";
 import social from "./Images/icon-social.svg";
-/* import timeData from "./data.json";
- */
 
 function App() {
   const imageArray = [work, play, study, exercise, social, selfCare];
@@ -22,7 +19,7 @@ function App() {
     "hsl(264, 64%, 52%)",
     "hsl(43, 84%, 65%)",
   ];
-  const [details, setdetails] = useState(null);
+  const [details, setdetails] = useState<any[] | null>(null);
   const [timeSet, settimeSet] = useState("weekly");
   const [lasttime, setlasttime] = useState("Last Week");
   const Dailytime = () => {
@@ -30,8 +27,9 @@ function App() {
     setlasttime("Yesterday");
     1;
     const exceptionAdder = () => {
-      const lowerHead = document.querySelector(".lower-head");
-      const lowerHeadChildren = lowerHead.querySelectorAll("p");
+      const lowerHead = document.querySelector(".lower-head")!;
+      const lowerHeadChildren = lowerHead.querySelectorAll("p")!;
+      console.log(lowerHead);
       lowerHeadChildren.forEach((child) => {
         if (child.classList.contains("exception")) {
           child.classList.remove("exception");
@@ -46,7 +44,7 @@ function App() {
     settimeSet("weekly");
     setlasttime("Last Week");
     const exceptionAdder = () => {
-      const lowerHead = document.querySelector(".lower-head");
+      const lowerHead = document.querySelector(".lower-head")!;
       const lowerHeadChildren = lowerHead.querySelectorAll("p");
       lowerHeadChildren.forEach((child) => {
         if (child.classList.contains("exception")) {
@@ -62,7 +60,7 @@ function App() {
     settimeSet("monthly");
     setlasttime("Last Month");
     const exceptionAdder = () => {
-      const lowerHead = document.querySelector(".lower-head");
+      const lowerHead = document.querySelector(".lower-head")!;
       const lowerHeadChildren = lowerHead.querySelectorAll("p");
       lowerHeadChildren.forEach((child) => {
         if (child.classList.contains("exception")) {
@@ -81,25 +79,31 @@ function App() {
       .then((data) => {
         document.getElementsByClassName("timeSet");
 
-        const newData = data.map((item) => ({
-          title: item.title,
-          current: item.timeframes[timeSet].current,
-          previous: item.timeframes[timeSet].previous,
-          id: item.id,
-        }));
+        const newData = data.map(
+          (item: {
+            title: any;
+            timeframes: {
+              [x: string]: {
+                current: any;
+                previous: any;
+              };
+            };
+            id: any;
+          }) => ({
+            title: item.title,
+            current: item.timeframes[timeSet].current,
+            previous: item.timeframes[timeSet].previous,
+            id: item.id,
+          })
+        );
         setdetails(newData);
         console.log(details);
       });
   }, [timeSet]);
-  const individualTime = () => {
-    const Cardextra = document.querySelector(".extra");
-    Cardextra?.classList.toggle("hidden");
-  };
 
-  /*   
-  const Current = detail.CurrentWeekly;
-  const timeSwitch = () => {}; */
-
+  if (details) {
+    console.log(details);
+  }
   return (
     <div className="text-white m-6 md:flex md:justify-center md:px-8 md:items-start md:gap-6 main xl:px-32 xl:items-center xl:gap-6 lg:gap-6">
       <div>
@@ -112,7 +116,7 @@ function App() {
 
       <div className="md:flex md:flex-wrap md:gap-4 md:items-center md:justify-center md:content-center lg:gap-6 xl:gap-6">
         {details &&
-          details.map((detail) => (
+          details.map((detail: any) => (
             <Card
               cardtitle={detail.title}
               timehours={detail.current}
