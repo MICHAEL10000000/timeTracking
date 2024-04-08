@@ -129,7 +129,7 @@ function App() {
     console.log(details);
   }
   return (
-    <div className="text-white m-6 md:flex md:justify-center md:px-8 md:items-start md:gap-6 main ">
+    <div className="text-white xl:px-32 xl:items-center xl:gap-6 lg:gap-6  m-6 md:flex md:justify-center md:px-8 md:items-start md:gap-6 main ">
       {" "}
       {/* xl:px-32 xl:items-center xl:gap-6 lg:gap-6 */}
       <div className="">
