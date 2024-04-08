@@ -1,6 +1,14 @@
 import threedots from "./Images/icon-ellipsis.svg";
 
-const Card = ({
+interface CardProps {
+  cardtitle: any;
+  timehours: any;
+  lasttime: any;
+  lasthour: any;
+  upperboxImg: any;
+  background: any;
+}
+const Card: React.FC<CardProps> = ({
   cardtitle,
   timehours,
   lasttime,
@@ -10,10 +18,6 @@ const Card = ({
 }) => {
   const upper_boxStyles = {
     backgroundColor: background,
-  };
-  const individualTime = () => {
-    const Cardextra = document.querySelector(".extra");
-    Cardextra?.classList.toggle("hidden");
   };
 
   return (

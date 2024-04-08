@@ -72,8 +72,33 @@ function App() {
     };
     exceptionAdder();
   };
-
   useEffect(() => {
+    fetch("./data/db.json")
+      .then((Response) => Response.json())
+      .then((data) => {
+        const filesData = data.files;
+        const newData = filesData.map(
+          (item: {
+            title: any;
+            timeframes: {
+              [x: string]: {
+                current: any;
+                previous: any;
+              };
+            };
+            id: any;
+          }) => ({
+            title: item.title,
+            current: item.timeframes[timeSet].current,
+            previous: item.timeframes[timeSet].previous,
+            id: item.id,
+          })
+        );
+        console.log(newData);
+        setdetails(newData);
+      });
+  }, [timeSet]);
+  /*   useEffect(() => {
     fetch("http://localhost:8000/files")
       .then((Response) => Response.json())
       .then((data) => {
@@ -97,24 +122,26 @@ function App() {
           })
         );
         setdetails(newData);
-        console.log(details);
       });
-  }, [timeSet]);
+  }, [timeSet]); */
 
   if (details) {
     console.log(details);
   }
   return (
-    <div className="text-white m-6 md:flex md:justify-center md:px-8 md:items-start md:gap-6 main xl:px-32 xl:items-center xl:gap-6 lg:gap-6">
-      <div>
+    <div className="text-white m-6 md:flex md:justify-center md:px-8 md:items-start md:gap-6 main ">
+      {" "}
+      {/* xl:px-32 xl:items-center xl:gap-6 lg:gap-6 */}
+      <div className="">
+        {" "}
+        {/* lg:row-span-3 */}
         <Header
           Dailytime={Dailytime}
           Weeklytime={Weeklytime}
           Monthlytime={Monthlytime}
         />
       </div>
-
-      <div className="md:flex md:flex-wrap md:gap-4 md:items-center md:justify-center md:content-center lg:gap-6 xl:gap-6">
+      <div className=" md:flex md:flex-wrap md:gap-4 md:items-center md:justify-center md:content-center lg:gap-6 xl:gap-6">
         {details &&
           details.map((detail: any) => (
             <Card

@@ -1,7 +1,17 @@
 import "./index.css";
 import jeremy from "./Images/image-jeremy.png";
 
-const Header = ({ Dailytime, Weeklytime, Monthlytime }) => {
+interface HeadProps {
+  Dailytime: any;
+  Weeklytime: any;
+  Monthlytime: any;
+}
+
+const Header: React.FC<HeadProps> = ({
+  Dailytime,
+  Weeklytime,
+  Monthlytime,
+}) => {
   return (
     <div className="rounded-2xl  bg-DarkBlue ">
       <div className="flex items-center py-6 justify-between px-8 bg-Violet rounded-2xl md:flex-col md:items-start md:pr-16 md:pl-7 md:pb-16 md:pt-10">
