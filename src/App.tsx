@@ -8,6 +8,7 @@ import study from "./Images/icon-study.svg";
 import selfCare from "./Images/icon-self-care.svg";
 import exercise from "./Images/icon-exercise.svg";
 import social from "./Images/icon-social.svg";
+import data from "../data/db.json";
 
 function App() {
   const imageArray = [work, play, study, exercise, social, selfCare];
@@ -73,30 +74,27 @@ function App() {
     exceptionAdder();
   };
   useEffect(() => {
-    fetch("./data/db.json")
-      .then((Response) => Response.json())
-      .then((data) => {
-        const filesData = data.files;
-        const newData = filesData.map(
-          (item: {
-            title: any;
-            timeframes: {
-              [x: string]: {
-                current: any;
-                previous: any;
-              };
-            };
-            id: any;
-          }) => ({
-            title: item.title,
-            current: item.timeframes[timeSet].current,
-            previous: item.timeframes[timeSet].previous,
-            id: item.id,
-          })
-        );
-        console.log(newData);
-        setdetails(newData);
-      });
+    console.log(data);
+    const filesData = data.files;
+    const newData = filesData.map(
+      (item: {
+        title: any;
+        timeframes: {
+          [x: string]: {
+            current: any;
+            previous: any;
+          };
+        };
+        id: any;
+      }) => ({
+        title: item.title,
+        current: item.timeframes[timeSet].current,
+        previous: item.timeframes[timeSet].previous,
+        id: item.id,
+      })
+    );
+    console.log(newData);
+    setdetails(newData);
   }, [timeSet]);
   /*   useEffect(() => {
     fetch("http://localhost:8000/files")
