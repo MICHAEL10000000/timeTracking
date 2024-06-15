@@ -40,11 +40,19 @@ body{
 .exception{
     color: white;
 }
+
 @media (min-width: 768px) {
     .card {
         flex-grow: 1;
 
-    }
+    }.app{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+ .app-Sections{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+ }
 }
 @media (min-width: 1100px) {
     .main {
@@ -55,4 +63,10 @@ body{
         flex-grow: 1;
     }
     
+}
+@media screen and (min-width: 1024px) {
+    .app-Sections{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+     }
 }

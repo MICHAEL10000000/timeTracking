@@ -127,7 +127,7 @@ function App() {
     console.log(details);
   }
   return (
-    <div className="text-white xl:px-32 xl:items-center xl:gap-6 lg:gap-6  m-6 md:flex md:justify-center md:px-8 md:items-start md:gap-6 main ">
+    <div className=" app text-white xl:px-32 xl:items-center xl:gap-6 lg:gap-6  m-6  md:justify-center md:px-8 md:items-start md:gap-6 main ">
       {" "}
       {/* xl:px-32 xl:items-center xl:gap-6 lg:gap-6 */}
       <div className="">
@@ -139,7 +139,7 @@ function App() {
           Monthlytime={Monthlytime}
         />
       </div>
-      <div className=" md:flex md:flex-wrap md:gap-4 md:items-center md:justify-center md:content-center lg:gap-6 xl:gap-6">
+      <div className=" app-Sections md:flex-wrap md:gap-4 md:items-center md:justify-center md:content-center lg:gap-6 xl:gap-6">
         {details &&
           details.map((detail: any) => (
             <Card
