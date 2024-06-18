@@ -7,6 +7,9 @@ interface CardProps {
   lasthour: any;
   upperboxImg: any;
   background: any;
+  Dailytime: any;
+  Weeklytime: any;
+  Monthlytime: any;
 }
 const Card: React.FC<CardProps> = ({
   cardtitle,
@@ -15,6 +18,9 @@ const Card: React.FC<CardProps> = ({
   lasthour,
   upperboxImg,
   background,
+  Dailytime,
+  Weeklytime,
+  Monthlytime,
 }) => {
   const upper_boxStyles = {
     backgroundColor: background,
@@ -31,7 +37,46 @@ const Card: React.FC<CardProps> = ({
       <div className="lower_box relative items-center justify-between px-8 py-7 rounded-2xl  bg-DarkBlue hover:bg-DesaturatedBlue ">
         <div className="flex gap-1 items-center justify-between">
           {cardtitle}
-          <img src={threedots} alt="" />
+          <div className="dotDropdown relative">
+            <img
+              src={threedots}
+              alt=""
+              onClick={(e) => {
+                console.log(e.target);
+                const target = e.target.parentNode;
+                target.lastChild.classList.toggle("hidden");
+              }}
+            />
+            <ul className="dropDownContent absolute rounded-md bg-white text-black top-3 right-0 hidden">
+              <li
+                onClick={(e) => {
+                  Dailytime();
+                  e.target.parentNode.classList.toggle("hidden");
+                }}
+                className=" px-3 hover:bg-gray-400 font-medium pt-1"
+              >
+                Daily
+              </li>
+              <li
+                onClick={(e) => {
+                  Weeklytime();
+                  e.target.parentNode.classList.toggle("hidden");
+                }}
+                className=" px-3 hover:bg-gray-400 font-medium"
+              >
+                Weekly
+              </li>
+              <li
+                onClick={(e) => {
+                  Monthlytime();
+                  e.target.parentNode.classList.toggle("hidden");
+                }}
+                className=" px-3 hover:bg-gray-400 font-medium pb-1"
+              >
+                Monthly
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="flex  items-center justify-between mt-4 md:flex-col md:items-start md:gap-3">
           <p className="text-3xl">{timehours}hrs</p>

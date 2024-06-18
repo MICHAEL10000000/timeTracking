@@ -141,16 +141,21 @@ function App() {
       </div>
       <div className=" app-Sections md:flex-wrap md:gap-4 md:items-center md:justify-center md:content-center lg:gap-6 xl:gap-6">
         {details &&
-          details.map((detail: any) => (
-            <Card
-              cardtitle={detail.title}
-              timehours={detail.current}
-              lasttime={lasttime}
-              lasthour={detail.previous}
-              upperboxImg={imageArray[detail.id - 1]}
-              background={backgroundArray[detail.id - 1]}
-              key={detail.id}
-            />
+          details.map((detail: any, index) => (
+            <div key={index}>
+              <Card
+                cardtitle={detail.title}
+                timehours={detail.current}
+                lasttime={lasttime}
+                lasthour={detail.previous}
+                upperboxImg={imageArray[detail.id - 1]}
+                background={backgroundArray[detail.id - 1]}
+                key={detail.id}
+                Dailytime={Dailytime}
+                Weeklytime={Weeklytime}
+                Monthlytime={Monthlytime}
+              />
+            </div>
           ))}
       </div>
     </div>
