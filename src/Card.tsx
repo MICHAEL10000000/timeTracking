@@ -44,8 +44,10 @@ const Card: React.FC<CardProps> = ({
               onClick={(e) => {
                 console.log(e.target);
                 const target = e.target as HTMLElement;
-                if (target.lastChild) {
-                  (target.lastChild as HTMLElement).classList.toggle("hidden");
+                if (target.parentNode) {
+                  (target.parentNode.lastChild as HTMLElement).classList.toggle(
+                    "hidden"
+                  );
                 }
               }}
             />
