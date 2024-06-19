@@ -43,15 +43,22 @@ const Card: React.FC<CardProps> = ({
               alt=""
               onClick={(e) => {
                 console.log(e.target);
-                const target = e.target.parentNode;
-                target.lastChild.classList.toggle("hidden");
+                const target = e.target as HTMLElement;
+                if (target.lastChild) {
+                  (target.lastChild as HTMLElement).classList.toggle("hidden");
+                }
               }}
             />
             <ul className="dropDownContent absolute rounded-md bg-white text-black top-3 right-0 hidden">
               <li
                 onClick={(e) => {
                   Dailytime();
-                  e.target.parentNode.classList.toggle("hidden");
+                  const target = e.target as HTMLElement;
+                  if (target.parentNode) {
+                    (target.parentNode as HTMLElement).classList.toggle(
+                      "hidden"
+                    );
+                  }
                 }}
                 className=" px-3 hover:bg-gray-400 font-medium pt-1"
               >
@@ -60,7 +67,12 @@ const Card: React.FC<CardProps> = ({
               <li
                 onClick={(e) => {
                   Weeklytime();
-                  e.target.parentNode.classList.toggle("hidden");
+                  const target = e.target as HTMLElement;
+                  if (target.parentNode) {
+                    (target.parentNode as HTMLElement).classList.toggle(
+                      "hidden"
+                    );
+                  }
                 }}
                 className=" px-3 hover:bg-gray-400 font-medium"
               >
@@ -69,7 +81,12 @@ const Card: React.FC<CardProps> = ({
               <li
                 onClick={(e) => {
                   Monthlytime();
-                  e.target.parentNode.classList.toggle("hidden");
+                  const target = e.target as HTMLElement;
+                  if (target.parentNode) {
+                    (target.parentNode as HTMLElement).classList.toggle(
+                      "hidden"
+                    );
+                  }
                 }}
                 className=" px-3 hover:bg-gray-400 font-medium pb-1"
               >
